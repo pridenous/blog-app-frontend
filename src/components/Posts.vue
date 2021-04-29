@@ -1,11 +1,9 @@
 <template>
   <div style="max-height:100vh">
-    <v-card class="my-1" flat id="theme">
+    @<v-card class="my-1" flat id="theme">
       <div class="d-flex justify-between">
         <div>
-          <v-card-title class="textTitle white--text"
-            >Authenticatation with Laravel Passport
-          </v-card-title>
+          <v-card-title class="textTitle white--text">{{}} </v-card-title>
           <v-card-text class="subTitle white--text mt-2"
             >Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum
             atque unde maiores minus dolore quia alias, ut illo optio deleniti
@@ -36,6 +34,35 @@
     </v-card>
   </div>
 </template>
+
+<script>
+import postService from "@/api/posts";
+
+export default {
+  name: "Post",
+  data() {
+    return {
+      posts: [],
+    };
+  },
+  created() {
+    this.getPosts();
+  },
+  methods: {
+    getPosts() {
+      postService
+        .getPosts()
+        .then((response) => {
+          this.posts = response.posts;
+          console.table(this.posts);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+  },
+};
+</script>
 
 <style>
 #theme {
