@@ -8,7 +8,7 @@ import Posts from './components/Posts.vue';
 
 Vue.use(VueRouter)
 Vue.config.productionTip = false
-
+Vue.use(require('vue-moment'))
 const routes = [
   {
     path: '/users',
